@@ -1,7 +1,7 @@
 # TODO
 A very simply todo app written with node.
 
-![Screenshot][screenshot.png]
+![Screenshot](screenshot.png)
 
 ## Features
 I wrote this sideprojekt just to learn express and node.
