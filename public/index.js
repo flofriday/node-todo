@@ -1,3 +1,5 @@
+var input = document.getElementById('new_todo').value = '';
+
 M.AutoInit();
 loadTodoList();
 
@@ -26,17 +28,33 @@ function addTodoElement(obj) {
     li.classList = "collection-item flow-text";
     li.id = obj.ID;
 
-    var div = document.createElement("DIV");
-    div.textContent = obj.text;
-    div.innerHTML += '<span class="secondary-content" style="cursor: pointer" onclick="removeTodo(' + obj.ID + ')"><i class="material-icons">check</i></span>';
+    var input = document.createElement("INPUT");
+    input.setAttribute("type", "checkbox");
+    input.classList = "filled-in"
+    input.onclick = function() {removeTodo(obj.ID)}
 
-    li.appendChild(div);
+
+    var span = document.createElement("SPAN");
+    span.style = 'color: black; line-height: 1.6; font-size: 16px';
+    span.innerText = obj.text;
+
+    var label = document.createElement("LABEL")
+    label.appendChild(input)
+    label.appendChild(span)
+
+
+    li.appendChild(label);
     contentElement.appendChild(li);
 
     //contentElement.innerHTML += '<li id="' + obj.ID +'" class="collection-item flow-text"><div>' + obj.text  + '<span class="secondary-content" style="cursor: pointer" onclick="removeTodo(' + obj.ID + ')"><i class="material-icons">check</i></span></div></li>';
 }
 
-function addTodo() {
+function addTodo(e) {
+    // only run this on enter
+    if (e.keyCode != 13) {
+        return
+    }
+
     var input = document.getElementById('new_todo');
     var text = input.value;
     input.value = '';

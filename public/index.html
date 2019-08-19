@@ -12,7 +12,8 @@
   <title>Todo App</title>
 </head>
 
-<body>
+
+<body style="min-height: 100vh; background-image: url('/background.jpg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
   <!-- Navbar -->
   <nav>
     <div class="indigo nav-wrapper">
@@ -21,27 +22,14 @@
   </nav>
 
   <div class="container">
-    <ul id="content" class="collection">
-      <li class="collection-item">Loading</li>
-    </ul>
-  </div>
-
-  <!-- Floating action button -->
-  <div class="fixed-action-btn">
-    <a class="btn-floating btn-large red waves-effect modal-trigger" href="#modal1"
-      onclick="document.getElementById('new_todo').focus();">
-      <i class="large material-icons">mode_edit</i>
-    </a>
-  </div>
-
-  <!-- Modal Structure -->
-  <div id="modal1" class="modal">
-    <div class="modal-content">
-      <h4>Add Todo</h4>
-      <input autofocus placeholder="Install Linux" id="new_todo" type="text" class="validate">
-    </div>
-    <div class="modal-footer">
-      <a onclick="addTodo()" class="modal-close waves-effect waves-green btn">Add</a>
+    <div class="row indigo" style="margin-top: 20px; position: relative;">
+        <i class="material-icons" style="color: white; position:absolute; left: 18px; top: 50%; transform: translate(0, -50%);">add</i>
+        <input class="browser-default" style="background-color: transparent; border: none; padding: 10px;padding-left:50px; width: 100%; height: 50px; line-height: 30px; color: white" type="text" placeholder="Add a Todo ..." id="new_todo" onkeypress="addTodo(event)">
+   </div>
+    <div class="row">
+      <ul id="content" class="collection">
+        <li class="collection-item">Loading</li>
+      </ul>
     </div>
   </div>
 

@@ -1,3 +1,5 @@
+var fs = require('fs');
+
 var express = require('express');
 var bodyParser = require('body-parser');
 
@@ -9,14 +11,14 @@ function Todo(text) {
     return obj;
 }
 
-var todoList = [Todo("Write todo app"), Todo("Delte this hardcoded shit")];
+var todoList = JSON.parse(fs.readFileSync('data.json'));
 
 var app = express();
 
 var server = app.listen(3000, listening);
 
 function listening() {
-    console.log("listening . . . ");
+    console.log("Listening on port 3000 ...");
 }
 
 app.use(express.static('public'));
@@ -55,7 +57,9 @@ function addTodo(request, response) {
     }
 
     todo = Todo(text);
-    todoList.push(todo)
+    todoList.push(todo);
+
+    fs.writeFile('data.json', JSON.stringify(todoList), () => {});
 
     response.send(todo)
 }
@@ -78,7 +82,12 @@ function removeTodo(request, response) {
 
     if (index !== null) {
         todoList.splice(index, 1);
+
+        fs.writeFile('data.json', JSON.stringify(todoList), () => { });
     }
 
     response.status(status).send(body)
 }
+
+
+function finished(err) {}
